@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/react-test2508' element={<Layout />}>
+        <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
 
         {/* 네비에 들어가는 구성 메뉴들 */}
