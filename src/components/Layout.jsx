@@ -18,7 +18,7 @@ function Layout() {
 
             <header className='header'>
                 <div className='logo'>
-                    <Link to="/wd-layout">
+                    <Link to="/">
                         96CA
                     </Link>
                 </div>
@@ -62,7 +62,7 @@ function Layout() {
 
             <footer>
                 <div className='logo'>
-                    <Link to="/wd-layout">
+                    <Link to="/">
                         96CA
                     </Link>
                 </div>
