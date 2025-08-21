@@ -1,77 +1,59 @@
-import React, { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+// src/components/Layout.jsx
+import { Outlet, Link /*, NavLink*/ } from 'react-router-dom';
 
+const MENU = [
+  { label: "Menu-1", to: "menu1", subs: ["SubMenu-1","SubMenu-2","SubMenu-3","SubMenu-4"] },
+  { label: "Menu-2", to: "menu2", subs: ["SubMenu-1","SubMenu-2","SubMenu-3","SubMenu-4"] },
+  { label: "Menu-3", to: "menu3", subs: ["SubMenu-1","SubMenu-2","SubMenu-3","SubMenu-4"] },
+  { label: "Menu-4", to: "menu4", subs: ["SubMenu-1","SubMenu-2","SubMenu-3","SubMenu-4"] },
+];
 
 function Layout() {
-    const [open, setOpen] = useState(null);
+  return (
+    <>
+      {/* (선택) 스킵 링크 */}
+      {/* <a href="#main" className="skip">본문 바로가기</a> */}
 
-    const MENU = [
-        { label: "Menu-1", to: "Menu-1", subs: ["SubMenu-1", "SubMenu-2", "SubMenu-3", "SubMenu-4"] },
-        { label: "Menu-2", to: "Menu-2", subs: ["SubMenu-1", "SubMenu-2", "SubMenu-3", "SubMenu-4"] },
-        { label: "Menu-3", to: "Menu-3", subs: ["SubMenu-1", "SubMenu-2", "SubMenu-3", "SubMenu-4"] },
-        { label: "Menu-4", to: "Menu-4", subs: ["SubMenu-1", "SubMenu-2", "SubMenu-3", "SubMenu-4"] }
-    ]
+      <header className="header">
+        <div className="logo">
+          <Link to="/">96CA</Link>
+        </div>
 
+        <nav className="gnb" aria-label="주요 메뉴">
+          <ul>
+            {MENU.map(m => (
+              <li key={m.to}>
+              
+                <Link to={m.to} className="top" aria-haspopup="true">
+                  {m.label}
+                </Link>
 
-    return (
-        <>
+                <ul className="sub">
+                  {m.subs.map((s, j) => (
+                    <li key={j}>
+                      <Link to={m.to}>{s}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
 
-            <header className='header'>
-                <div className='logo'>
-                    <Link to="/">
-                        96CA
-                    </Link>
-                </div>
-                <nav className='gnb' aria-label='주요 메뉴'>
-                    <ul>
-                        {MENU.map((m, i) => (
-                            <li
-                                key={m.to}
-                                onMouseEnter={() => setOpen(i)}
-                                onMouseLeave={() => setOpen(null)}
-                            >
-                                <button
-                                type='button'
-                                className='top'
-                                aria-expanded={open === i}
-                                aria-controls={`sub-${i}`}
-                                onClick={() => setOpen(open === i ? null :i)}
-                                >
-                                    {m.label}
-                                </button>
-                                <ul id={`sub-${i}`} className={`sub ${open === i ?"show" : "" }`}
-                                role='menu'
-                                >
-                                    {m.subs.map((s,j) =>(
-                                            <li key={j}>
-                                                <Link to={m.to}>{s}</Link>
-                                            </li>
-                                    ))}
+      <main id="main">
+        <Outlet />
+      </main>
 
-                                </ul>
-                            </li>
-                        ))}
-
-                    </ul>
-                </nav>
-            </header>
-
-            <main>
-                <Outlet />
-            </main>
-
-            <footer>
-                <div className='logo'>
-                    <Link to="/">
-                        96CA
-                    </Link>
-                </div>
-                <p> © 2025 쇼핑몰 </p>
-                <div className='sns'> SNS 아이콘 </div>
-            </footer>
-
-        </>
-    );
+      <footer>
+        <div className="logo">
+          <Link to="/">96CA</Link>
+        </div>
+        <p>© 2025 96CA. Human research for a better tomorrow.</p>
+        <div className="sns">SNS 아이콘</div>
+      </footer>
+    </>
+  );
 }
 
 export default Layout;

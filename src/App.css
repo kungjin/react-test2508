@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -26,14 +27,16 @@ main {
   height: 80px;
   padding: 0 16px;
   border-bottom: 1px solid #e5e7eb;
-  background: #fff;
+  background: #000000;
   max-width: 1920px;
   margin: 0 auto;
+  
 }
 
 .logo a {
   font-weight: 900;
   font-size: 24px;
+  color: #fafafa;
 }
 
 .gnb>ul {
@@ -42,11 +45,19 @@ main {
   list-style: none;
   margin: 0;
   padding: 0;
+  color: #fafafa;
 }
 
 .gnb li {
   position: relative;
+  
 }
+
+.gnb li:hover > .sub,
+.gnb li:focus-within > .sub { display: block; }
+
+
+.top:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
 
 .top {
   padding: 5px 10px;
@@ -73,6 +84,7 @@ main {
   border-radius: 10px;
   padding: 6px 0;
   z-index: 10;
+  color: #111;
 }
 
 .sub.show {
@@ -128,6 +140,7 @@ footer .sns {
   overflow: hidden;
   height: var(--slider-h);
   border-radius: var(--slider-radius);
+  
 }
 
 
@@ -216,6 +229,7 @@ footer .sns {
   border-radius: 10px;
   padding: 12px;
   background: #fff;
+  
 }
 
 .tabs {
@@ -253,6 +267,11 @@ footer .sns {
   font-size: 12px;
 }
 
+.content-grid{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -274,21 +293,21 @@ footer .sns {
 
 /* Banner */
 :root {
-  --banner-h: 180px;
+  --banner-h: 250px;
 }
 
-.banner {
-  display: block;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.banner img {
+.banner{
+  display:grid;
+  place-items:center;      /* 가로+세로 중앙 한 방 */
   width: 100%;
-  height: var(--banner-h);
-  object-fit: cover;
-  display: block;
-  transition: transform .35s ease, filter .35s ease;
+  margin-inline:auto;
+  border-radius:10px;
+  overflow:hidden;
+}
+.banner img{
+  display:block;
+  max-width:100%;
+  height:auto;
 }
 
 .banner:hover img {
@@ -333,6 +352,8 @@ footer .sns {
 }
 
 
+
+
 /* hover 가능한 환경에서만 도트 확대 */
 @media (hover:hover){
   .slider .dots button:hover{ transform: scale(1.2); }
@@ -350,7 +371,7 @@ footer .sns {
 /* 반응형 높이 축소 (선택) */
 @media (max-width: 1024px) {
   :root {
-    --slider-h: 220px;
+    --slider-h: 320px;
   }
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
