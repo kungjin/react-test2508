@@ -351,6 +351,13 @@ footer .sns {
   gap: 16px; /* 필요에 따라 간격 조절 */
 }
 
+.link{
+  color:#252525;           /* 파랑 */
+  text-decoration: underline;
+  cursor:pointer;
+}
+.link:hover{ color:#ff1e1e; }
+
 
 
 
